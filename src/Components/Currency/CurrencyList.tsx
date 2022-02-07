@@ -1,4 +1,4 @@
-import useNormalizedCurrencyData from "./useNormalizedCurrencyData";
+import { useNormalizedCurrencyData } from "./useNormalizedCurrencyData";
 import useDebounce from "../../hooks/useDebounce";
 import CurrencyListItem from "./CurrencyListItem";
 
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function CurrencyList({ searchTerm }: Props) {
-  const { isLoading, transformedData, baseCurrency } =
+  const { transformedData, baseCurrency, isLoading } =
     useNormalizedCurrencyData();
   const debouncedSearchTerm: string = useDebounce<string>(searchTerm, 250);
 
@@ -16,7 +16,7 @@ export default function CurrencyList({ searchTerm }: Props) {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className="px-3 lg:px-0">
           {transformedData &&
             transformedData
               .filter((element) => {
@@ -28,9 +28,9 @@ export default function CurrencyList({ searchTerm }: Props) {
                   return element;
                 }
               })
-              .map((currency, i) => (
+              .map((currency) => (
                 <CurrencyListItem
-                  key={i}
+                  key={currency.uuid}
                   {...currency}
                   baseCurrency={baseCurrency}
                 />

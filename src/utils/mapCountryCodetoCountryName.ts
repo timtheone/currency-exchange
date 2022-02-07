@@ -248,7 +248,7 @@ const mapping: Record<string, string> = {
 };
 
 const mapCountryCodeToCountryName = (alpha2: string) => {
-  return mapping[alpha2.substring(0, 2)];
+  return mapping[alpha2.substring(0, 2)] ?? "No country given";
 };
 
 export default mapCountryCodeToCountryName;

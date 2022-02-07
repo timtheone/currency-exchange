@@ -11,8 +11,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <CurrencySearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
-      <CurrencyList searchTerm={searchTerm} />
+      <div className="container mx-auto">
+        <CurrencySearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+        <CurrencyList searchTerm={searchTerm} />
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import CurrencyData from "../../types/CurrencyData";
 import NormalizedCurrency from "../../types/NormalizedCurrency";
 import mapCountryCodeToCountryName from "../../utils/mapCountryCodetoCountryName";
 import CurrencyWithRequiredExchangeRate from "../../types/CurrencyWithRequiredExchangeRate";
+import { v4 as uuidv4 } from "uuid";
 
 const API_URL = "https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343";
 
@@ -36,17 +37,18 @@ export function normalizeData(data: Currency[]) {
         ...currency,
         ...{ countryName: countryName },
         ...{ countryFlag: countryFlag },
+        ...{ uuid: uuidv4() },
         ...{ rateByBaseValue: exhangeRate },
       };
     });
 }
 
-function useNormalizedCurrencyData(): {
+export function useNormalizedCurrencyData(): {
   transformedData: NormalizedCurrency[] | null;
-  isLoading: boolean;
   baseCurrency: string;
+  isLoading: boolean;
 } {
-  const { isLoading, apiData } = useFetch<CurrencyData>(API_URL);
+  const { apiData, isLoading } = useFetch<CurrencyData>(API_URL);
 
   const [transformedData, setTransformedData] =
     useState<Array<NormalizedCurrency> | null>(null);
@@ -61,7 +63,5 @@ function useNormalizedCurrencyData(): {
     }
   }, [apiData]);
 
-  return { transformedData, isLoading, baseCurrency };
+  return { transformedData, baseCurrency, isLoading };
 }
-
-export default useNormalizedCurrencyData;

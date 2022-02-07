@@ -1,0 +1,28 @@
+.imageContainer {
+    position: relative;
+    width: 100%;
+    line-height: 1;
+    animation: skeleton 1.2s ease-in-out infinite;
+    background-color: #f4f4f4;
+    background-image: linear-gradient(90deg, #f4f4f4, rgba(41, 41, 61, 0.05), #f4f4f4);
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    margin: 0;
+  }
+
+.image {
+  position: absolute;
+  opacity: 1;
+}
+  
+@keyframes skeleton {
+  0% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+  

@@ -16,10 +16,14 @@ export default function CurrencySearch({ setSearchTerm, searchTerm }: Props) {
   };
 
   return (
-    <form className="sticky top-0 right-0">
+    <form
+      className="sticky top-0 right-0 z-10"
+      data-testid="CurrencySearch_Form"
+    >
       <input
+        data-testid="CurrencySearch_Input"
         type="text"
-        placeholder="Seach currencies"
+        placeholder="Search currencies"
         onChange={handleSearch}
         className={`border-blue-800 w-full`}
         value={searchTerm}

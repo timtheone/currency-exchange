@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "../Image/Image";
 
 export default function FlagImage({
   countryFlag,
@@ -15,6 +16,12 @@ export default function FlagImage({
     setImageData({ src: "flags/default.png", alt: "Generic flag" });
   };
   return (
-    <img src={imageData.src} onError={handleFallback} alt={imageData.alt} />
+    <Image
+      url={imageData.src}
+      alt={imageData.alt}
+      width={70}
+      height={47}
+      onError={handleFallback}
+    />
   );
 }
